@@ -17,6 +17,6 @@ On the browser side jQuery Mobile, jQuery Flot and Backbone.js are used.
 Simply run `dashboard.py`, launch R3E and open `http://localhost:8080` in your browser.
 Instead of using live data from R3E you can use recorded data for testing purposes, e.g.:
 ```sh
-dasboard.py ./recordings/norisring.data
+dashboard.py ./recordings/norisring.data
 ```
 
