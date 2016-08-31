@@ -1,0 +1,38 @@
+@media all and (max-width: 50em) {
+    .grid .ui-block-a,
+    .grid .ui-block-b,
+    .grid .ui-block-c,
+    .grid .ui-block-d,
+    .grid .ui-block-e {
+        width: 100%;
+        float: none;
+    }
+}
+
+.ui-block-a, .ui-block-b, .ui-block-c {
+	padding: 1%;
+}
+
+/*#overview {
+	font-weight: bold;
+	font-family: monospace;
+	color: #0080ff;
+}*/
+
+#overview .value {
+	font-size: 300%;
+}
+
+#overview .ui-block-a, #overview .ui-block-b, #overview .ui-block-c {
+	height: 33%;
+}
+
+#overview #speed, #overview #gear { text-align: right; }
+
+/*#overview .ui-bar-a {
+	height: 60px;
+}*/
+
+#pedals input { display: none; }
+#pedals .ui-slider-track { margin-left: 15px; }
+

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>R3E Python Web Dashboard</title>
+        <link rel="stylesheet" href="libs/jquery.mobile-1.4.5.min.css" />
+        <script src="libs/jquery-1.11.2.js"></script>
+        <script src="libs/jquery.mobile-1.4.5.min.js"></script>
+        <script src="libs/jquery.flot.min.js"></script>
+        <script src="libs/jquery.flot.time.min.js"></script>
+        <script src="libs/jquery.flot.resize.min.js"></script>
+        <script src="libs/canvasjs.js"></script>
+        <script src="libs/jquery.canvasjs.js"></script>
+        <script src="libs/gauge.min.js"></script>
+        <script src="libs/underscore.js"></script>
+        <script src="libs/backbone.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/models.js"></script>
+        <script src="js/views.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+		<div data-role="header" data-theme="b">
+			<h1>R3E Python Web Dashboard</h1>
+			<a href="#panel" data-icon="bars" data-iconpos="notext">Menu</a>
+		</div>
+
+		<div data-role="panel" id="panel" data-position="left" data-display="overlay" data-theme="a">
+			<ul data-role="listview">
+				<li data-icon="home"><a href="#overview" id="panel-home">Overview</a></li>
+				<li data-icon="eye"><a href="#charts" id="panel-monitoring">Charts</a></li>
+				<li data-icon="info"><a href="#about" id="panel-about">About</a></li>
+			</ul>
+		</div>
+
+        <div data-role="page" id="overview" data-theme="a">
+            <div role="main" class="ui-content">
+				<div class="ui-grid-solo">
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							<h3>Engine RPM</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="rpm">
+							<form>
+								<input type="range" name="rpm-slider" id="rpm-slider" data-highlight="true" min="0" max="100" value="0">
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="ui-grid-b ui-responsive">
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							<h3>Lap times</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="times">
+							<form>
+								<label for="current-time">Current:</label>
+								<input type="text" name="current-time" id="current-time" placeholder="" value="">
+								<label for="best-time">Best:</label>
+								<input type="text" name="best-time" id="best-time" placeholder="" value="">
+							</form>
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							<h3>Session</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="speed">
+							5 / 6
+						</div>
+					</div>
+					<div class="ui-block-c">
+						<div class="ui-bar ui-bar-a">
+							<h3>Speed</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="speed">
+							<span class="value">N/A</span>
+							<span class="unit">km/h</span>
+						</div>
+					</div>
+
+					<div class="ui-block-a" id="pedals">
+						<div class="ui-bar ui-bar-a">
+							<h3>Pedals</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="pedals">
+							<form>
+								<label for="throttle-pedal-slider">Throttle</label>
+								<input type="range" name="throttle-pedal-slider" id="throttle-pedal-slider" data-highlight="true" data-mini="true" min="0" max="100" value="0">
+								<label for="brake-pedal-slider">Brake</label>
+								<input type="range" name="brake-pedal-slider" id="brake-pedal-slider" data-highlight="true" data-mini="true" min="0" max="100" value="0">
+								<label for="clutch-pedal-slider">Clutch</label>
+								<input type="range" name="clutch-pedal-slider" id="clutch-pedal-slider" data-highlight="true" data-mini="true" min="0" max="100" value="0">
+							</form>
+						</div>
+					</div>
+					<div class="ui-block-b"></div>
+					<div class="ui-block-c">
+						<div class="ui-bar ui-bar-a">
+							<h3>Gear</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="gear">
+							<span class="value">N/A</span>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+
+        <div data-role="page" id="about" data-theme="a">
+            <div role="main" class="ui-content">
+				About all this shit.
+            </div>
+        </div>
+
+        <div data-role="page" id="charts" data-theme="a">
+            <div role="main" class="ui-content">
+                <div class="ui-grid-a ui-responsive grid">
+                    <div class="ui-block-a" id="engine_rpm-block">
+						<div class="ui-bar ui-bar-a">
+                            <h3>Engine RPM</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="gear">
+                            <div class="graph" style="height: 15em;"></div>
+						</div>
+                    </div>
+
+                    <div class="ui-block-b" id="car_speed-block">
+						<div class="ui-bar ui-bar-a">
+                            <h3>Car speed</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="gear">
+                            <div class="graph" style="height: 15em;"></div>
+						</div>
+                    </div>
+
+                    <div class="ui-block-a" id="gear-block">
+						<div class="ui-bar ui-bar-a">
+                            <h3>Gear</h3>
+						</div>
+						<div class="ui-body ui-body-a" id="gear">
+                            <div class="graph" style="height: 15em;"></div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
